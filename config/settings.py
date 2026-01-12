@@ -45,7 +45,7 @@ APPLICATION_APPS = [
     "pages.apps.PagesConfig",
 ]
 
-THIRD_PARTY_APPS = ["debug_toolbar", "myapp"]
+THIRD_PARTY_APPS = ["debug_toolbar"]
 INSTALLED_APPS = DJANGO_APPS + APPLICATION_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
