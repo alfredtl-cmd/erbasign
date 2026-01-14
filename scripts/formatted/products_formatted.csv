@@ -1,21 +1,21 @@
 sku,name,price,is_active
-NMN 32000,$1,299.00,False
-Fish Oil 1000mg,HK$399,0.00,True
-Vitamin C 1000,399.5,0.00,True
-Collagen Peptide,$ 899,0.00,True
-Magnesium Glycinate,259,0.00,True
-Probiotic 30B,HK$ 699.00,0.00,True
-Zinc 50mg,$99,0.00,True
-NADH Booster,1,599.00,True
-PQQ Complex,799,0.00,True
-Spermidine,HK$1,99.00,True
-EGT 麥角硫因,$1,499.00,False
-CoQ10,299,0.00,True
-Iron,$129,0.00,True
-B-Complex,219.00,0.00,True
-Omega 3 Premium,HK$ 599,0.00,True
-Sleep Support,459,0.00,True
-Joint Care,$699,0.00,True
-Eye Care,HK$ 329,0.00,True
-Calcium D3,279,0.00,True
-Protein Bar,$39,0.00,True
+SKU-001,NMN 32000,1299.00,False
+SKU-002,Fish Oil 1000mg,399.00,False
+SKU-003,Vitamin C 1000,399.50,False
+SKU-004,Collagen Peptide,899.00,False
+SKU-005,Magnesium Glycinate,259.00,True
+SKU-006,Probiotic 30B,699.00,True
+SKU-007,Zinc 50mg,99.00,False
+SKU-008,NADH Booster,1599.00,True
+SKU-009,PQQ Complex,799.00,False
+SKU-010,Spermidine,1099.00,True
+SKU-011,EGT 麥角硫因,1499.00,False
+SKU-012,CoQ10,299.00,True
+SKU-013,Iron,129.00,False
+SKU-014,B-Complex,219.00,True
+SKU-015,Omega 3 Premium,599.00,False
+SKU-016,Sleep Support,459.00,False
+SKU-017,Joint Care,699.00,True
+SKU-018,Eye Care,329.00,True
+SKU-019,Calcium D3,279.00,True
+SKU-020,Protein Bar,39.00,True

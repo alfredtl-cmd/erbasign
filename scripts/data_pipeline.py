@@ -72,7 +72,9 @@ def ensure_dirs() -> None:
 def clean_email(x: str) -> str:
     if pd.isna(x):
         return ""
-    return str(x).strip().lower()
+    s = str(x).strip().lower()
+    s = re.sub(r"\s+", "", s)  # remove all whitespace inside email
+    return s
 
 
 def clean_phone(x: str) -> str:
@@ -117,6 +119,17 @@ def clean_date(x: str) -> str:
     return ""  # if cannot parse
 
 
+def normalize_sku(x: str) -> str:
+    if pd.isna(x):
+        return ""
+    s = str(x).strip().upper()
+    # convert weird dashes to normal hyphen
+    s = s.replace("–", "-").replace("—", "-")
+    # remove all whitespace (incl. non-breaking spaces)
+    s = re.sub(r"\s+", "", s)
+    return s
+
+
 def cmd_clean() -> None:
     ensure_dirs()
 
@@ -136,8 +149,8 @@ def cmd_clean() -> None:
 
     # products
     p_path = RAW_DIR / "products_raw.csv"
-    dfp = pd.read_csv(p_path)
-    dfp["sku"] = dfp["sku"].astype(str).str.strip()
+    dfp = pd.read_csv(p_path, dtype=str)
+    dfp["sku"] = dfp["sku"].apply(normalize_sku)
     dfp["name"] = dfp["name"].astype(str).str.strip()
     dfp["price"] = dfp["price"].apply(clean_price)
     dfp["is_active"] = dfp["is_active"].apply(clean_bool)
@@ -149,7 +162,7 @@ def cmd_clean() -> None:
     o_path = RAW_DIR / "orders_raw.csv"
     dfo = pd.read_csv(o_path)
     dfo["customer_email"] = dfo["customer_email"].apply(clean_email)
-    dfo["product_sku"] = dfo["product_sku"].astype(str).str.strip()
+    dfo["product_sku"] = dfo["product_sku"].apply(normalize_sku)
     dfo["quantity"] = dfo["quantity"].astype(str).str.strip()
     dfo["quantity"] = (
         pd.to_numeric(dfo["quantity"], errors="coerce").fillna(1).astype(int)
@@ -258,6 +271,8 @@ def cmd_import() -> None:
     dfo = dfo.drop_duplicates(
         subset=["customer_email", "product_sku", "quantity", "order_date", "note"]
     )
+    dfo["customer_email"] = dfo["customer_email"].astype(str).str.strip().str.lower()
+    dfo["product_sku"] = dfo["product_sku"].astype(str).str.strip()
 
     cust_map = {
         c.email: c
@@ -267,6 +282,7 @@ def cmd_import() -> None:
         p.sku: p
         for p in Product.objects.filter(sku__in=dfo["product_sku"].unique()).all()
     }
+    print("cust_map:", len(cust_map), "prod_map:", len(prod_map))
 
     orders = []
     for _, r in dfo.iterrows():
@@ -284,6 +300,7 @@ def cmd_import() -> None:
                 note=str(r.get("note", "")).strip(),
             )
         )
+        print("orders matched FK:", len(orders))
 
     # idempotent import: only insert orders not already in DB
     existing = set(

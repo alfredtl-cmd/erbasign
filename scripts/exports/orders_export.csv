@@ -1,0 +1,41 @@
+id,customer_email,product_sku,quantity,order_date,note
+81,alex.chan14@example.com,SKU-003,2,2025-10-21,first order
+82,casey.yip23@yahoo.com,SKU-012,2,2025-12-13,first order
+83,kit.lam24@example.com,SKU-004,2,2025-09-23,first order
+84,jamie.lee6@example.com,SKU-014,1,2025-11-24,VIP
+85,sam.chow11@gmail.com,SKU-003,4,2025-11-29,deliver pm
+86,chris.yip15@outlook.com,SKU-001,2,2025-12-03,nan
+87,alex.yip4@yahoo.com,SKU-008,1,2026-01-04,first order
+88,jamie.lau9@outlook.com,SKU-005,2,2025-09-28,gift
+89,sam.wong17@example.com,SKU-019,2,2025-10-17,nan
+90,casey.yip23@yahoo.com,SKU-006,2,2025-09-22,nan
+91,kit.chan21@example.com,SKU-003,3,2026-01-04,nan
+92,chris.yip15@outlook.com,SKU-001,3,2025-11-05,VIP
+93,chris.chow20@yahoo.com,SKU-005,1,2025-11-08,first order
+94,jamie.lau9@outlook.com,SKU-002,2,2025-12-20,gift
+95,morgan.yip25@gmail.com,SKU-007,3,2025-11-18,nan
+96,jamie.lau9@outlook.com,SKU-002,1,2026-01-12,first order
+97,chris.yip15@outlook.com,SKU-004,4,2025-10-02,gift
+98,casey.chan13@gmail.com,SKU-017,3,2025-10-18,VIP
+99,morgan.chow7@gmail.com,SKU-005,2,2025-12-01,nan
+100,casey.lee3@gmail.com,SKU-009,2,2025-12-25,deliver pm
+101,sam.wong17@example.com,SKU-010,1,2025-12-14,first order
+102,jamie.lee6@example.com,SKU-009,2,2026-01-14,VIP
+103,alex.cheung18@example.com,SKU-011,2,2026-01-10,first order
+104,sam.lee1@gmail.com,SKU-011,2,2026-01-04,first order
+105,jamie.lam8@yahoo.com,SKU-017,1,2026-01-03,first order
+106,casey.chan13@gmail.com,SKU-019,1,2025-11-25,first order
+107,casey.lee3@gmail.com,SKU-019,1,2025-09-27,gift
+108,casey.chan13@gmail.com,SKU-011,4,2025-11-12,gift
+109,kit.chan21@example.com,SKU-005,1,2025-10-01,gift
+110,alex.chan5@gmail.com,SKU-017,1,2025-11-03,gift
+111,casey.yip23@yahoo.com,SKU-008,1,2026-01-11,VIP
+112,alex.yip4@yahoo.com,SKU-013,2,2025-11-04,gift
+113,sam.ng22@gmail.com,SKU-008,2,2025-12-12,nan
+114,kit.lam24@example.com,SKU-017,1,2026-01-03,deliver pm
+115,jamie.lau9@outlook.com,SKU-003,3,2025-12-15,deliver pm
+116,chris.lam16@outlook.com,SKU-013,1,2025-11-14,gift
+117,kit.chan21@example.com,SKU-007,1,2025-10-30,VIP
+118,chris.chow20@yahoo.com,SKU-019,2,2026-01-13,VIP
+119,sam.ng22@gmail.com,SKU-004,4,2025-12-18,gift
+120,alex.lee10@gmail.com,SKU-015,2,2025-11-16,gift

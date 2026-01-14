@@ -2,6 +2,7 @@ from __future__ import annotations
 import random
 from pathlib import Path
 from datetime import date, timedelta
+import csv
 
 BASE_DIR = Path(__file__).resolve().parent
 RAW_DIR = BASE_DIR / "raw"
@@ -109,27 +110,43 @@ def write_customers(rows: int = 25) -> None:
 
 def write_products() -> None:
     path = RAW_DIR / "products_raw.csv"
-    lines = ["sku,name,price,is_active\n"]
-    for sku, name, price in PRODUCTS:
-        is_active = random.choice(["TRUE", "True", "true", "FALSE", "False", ""])
-        lines.append(f"{sku},{name},{price},{is_active}\n")
-    path.write_text("".join(lines), encoding="utf-8")
+    with path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["sku", "name", "price", "is_active"])
+
+        for sku, name, price in PRODUCTS:
+            # keep your "messy" active flag styles
+            is_active = random.choice(["TRUE", "True", "true", "FALSE", "False", ""])
+            # csv.writer will automatically quote fields when needed (e.g. "$1,299.00")
+            writer.writerow([sku, name, price, is_active])
 
 
 def write_orders(rows: int = 40) -> None:
     path = RAW_DIR / "orders_raw.csv"
+    cust_path = RAW_DIR / "customers_raw.csv"
+
+    # read customers emails from the already generated customers file
+    import csv
+
+    emails = []
+    with cust_path.open("r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            emails.append(row["email"])
+
     lines = ["customer_email,product_sku,quantity,order_date,note\n"]
     today = date.today()
-    for i in range(rows):
-        # deliberately reference customers by email pattern (will be cleaned)
-        first = random.choice(FIRST_NAMES)
-        last = random.choice(LAST_NAMES)
-        email = messy_email(first, last, random.randint(1, 25))
+
+    for _ in range(rows):
+        # ✅ ensure FK match: choose from existing customer emails
+        email = random.choice(emails)
+
         sku, _, _ = random.choice(PRODUCTS)
         qty = random.choice([1, 2, 3, " 2 ", "1 ", " 4"])
         od = messy_date(today - timedelta(days=random.randint(0, 120)))
         note = random.choice(["", " first order ", "VIP", "  deliver pm  ", "gift"])
         lines.append(f"{email},{sku},{qty},{od},{note}\n")
+
     path.write_text("".join(lines), encoding="utf-8")
 
 
